@@ -38,17 +38,17 @@ endif
 
 DIR = $(shell pwd)
 
-%.o: %.cpp
-	$(C++) $(CCFLAGS) $< -c
-
-pccserver: pccserver.o
-	$(C++) $^ -o $@ $(LDFLAGS) -static
-pccclient: pccclient.o
-	$(C++) $^ -o $@ $(LDFLAGS) -static
-
 APP = pccserver pccclient
 
 all: $(APP)
+
+%.o: %.cpp
+	$(C++) $(CCFLAGS) $< -c
+
+pccserver: pccserver.o ../core/libudt.a
+	$(C++) $^ -o $@ $(LDFLAGS) -static
+pccclient: pccclient.o ../core/libudt.a
+	$(C++) $^ -o $@ $(LDFLAGS) -static
 
 clean:
 	rm -f *.o $(APP)
