@@ -675,7 +675,7 @@ void CUDT::connect(const sockaddr* serv_addr) {
   // register this socket in the rendezvous queue
   // RendezevousQueue is used to temporarily store incoming handshake,
   // non-rendezvous connections also require this function
-  uint64_t ttl = 3000000;
+  uint64_t ttl = 30000000;
   if (m_bRendezvous) {
     ttl *= 10;
   }
