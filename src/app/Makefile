@@ -46,9 +46,9 @@ all: $(APP)
 	$(C++) $(CCFLAGS) $< -c
 
 pccserver: pccserver.o ../core/libudt.a
-	$(C++) $^ -o $@ $(LDFLAGS) -static
+	$(C++) $^ -o $@ $(LDFLAGS) #-static
 pccclient: pccclient.o ../core/libudt.a
-	$(C++) $^ -o $@ $(LDFLAGS) -static
+	$(C++) $^ -o $@ $(LDFLAGS) #-static
 
 clean:
 	rm -f *.o $(APP)
