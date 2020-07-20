@@ -22,10 +22,10 @@ DEFINE_bool(use_utility_version_2, false, "Use version-2 utility function");
 #endif
 
 #ifndef QUIC_PORT
-//#define DEBUG_UTILITY_CALC
-//#define DEBUG_MONITOR_INTERVAL_QUEUE_ACKS
-//#define DEBUG_MONITOR_INTERVAL_QUEUE_LOSS
-//#define DEBUG_INTERVAL_SIZE
+#define DEBUG_UTILITY_CALC
+// #define DEBUG_MONITOR_INTERVAL_QUEUE_ACKS
+// #define DEBUG_MONITOR_INTERVAL_QUEUE_LOSS
+// #define DEBUG_INTERVAL_SIZE
 
 #endif
 
@@ -490,6 +490,8 @@ bool PccMonitorIntervalQueue::CalculateUtility(MonitorInterval* interval) {
   std::cerr << "\tn_packets         = " << interval->n_packets << std::endl;
   std::cerr << "\ttarget send_rate  = " << interval->sending_rate / 1000000.0f
             << std::endl;
+  std::cerr << "\tmi_time_seconds   = " << mi_time_seconds << std::endl;
+  std::cerr << "\tbytes_sent / lost = " << bytes_sent << " / " << bytes_lost << "\n";
   std::cerr << "\tactual send_rate  = "
             << bytes_sent * 8.0f / (mi_time_seconds * 1000000.0f) << std::endl;
   std::cerr << "\tthroughput        = "
