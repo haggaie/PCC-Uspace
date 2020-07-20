@@ -120,7 +120,7 @@ CUDT::CUDT() {
   initSynch();
 
   // Default UDT configurations
-  m_iMSS = 1500;
+  m_iMSS = 4096;
   m_bSynSending = true;
   m_bSynRecving = true;
   m_iFlightFlagSize = 1000000;

@@ -53,7 +53,7 @@ const QuicBandwidth kMinimumRateChange = (int64_t)(0.5f * kMegabit);
 // Number of microseconds per second.
 const float kNumMicrosPerSecond = 1000000.0f;
 // Default TCPMSS used in UDT only.
-const size_t kDefaultTCPMSS = 1400;
+const size_t kDefaultTCPMSS = 4096;
 // An inital RTT value to use (10ms)
 const size_t kInitialRttMicroseconds = 1 * 1000;
 #endif
