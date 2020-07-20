@@ -36,14 +36,17 @@ namespace {
 const float kLossTolerance = 0.05f;
 // Coefficeint of the loss rate term in utility function.
 const float kLossCoefficient = -1000.0f;
+#ifdef QUIC_PORT
 // Coefficient of RTT term in utility function.
 const float kRTTCoefficient = -200.0f;
+#endif
 #ifndef QUIC_PORT_LOCAL
 // Number of microseconds per second.
 const float kNumMicrosPerSecond = 1000000.0f;
 #endif
 // Coefficienty of the latency term in the utility function.
-const float kLatencyCoefficient = 1;
+const float kLatencyCoefficient = getenv("PCC_LATENCY") ?
+    atof(getenv("PCC_LATENCY")) : 0.00001;
 // Alpha factor in the utility function.
 const float kAlpha = 1;
 // An exponent in the utility function.
