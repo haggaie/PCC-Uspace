@@ -101,26 +101,14 @@ void CTimer::rdtsc(uint64_t &x) {
   }
 #elif OSX
   x = mach_absolute_time();
-#elif IA32
-  uint32_t lval, hval;
-  // asm volatile ("push %eax; push %ebx; push %ecx; push %edx");
-  // asm volatile ("xor %eax, %eax; cpuid");
-  asm volatile ("rdtsc" : "=a" (lval), "=d" (hval));
-  // asm volatile ("pop %edx; pop %ecx; pop %ebx; pop %eax");
-  x = hval;
-  x = (x << 32) | lval;
 #elif IA64
   asm ("mov %0=ar.itc" : "=r"(x) :: "memory");
-#elif AMD64
-  uint32_t lval, hval;
-  asm ("rdtsc" : "=a" (lval), "=d" (hval));
-  x = hval;
-  x = (x << 32) | lval;
 #else
   // use system call to read time clock for other archs
-  timeval t;
-  gettimeofday(&t, 0);
-  x = (uint64_t)t.tv_sec * (uint64_t)1000000 + (uint64_t)t.tv_usec;
+  struct timespec t;
+
+  clock_gettime(CLOCK_MONOTONIC, &t);
+  x = (uint64_t)t.tv_sec * 1000000000ull + (uint64_t)t.tv_nsec;
 #endif
 }
 
