@@ -1,0 +1,1 @@
+sudo $ip netns exec numa1 env LD_PRELOAD=libvma.so ./pccclient send 10.0.17.1 9999

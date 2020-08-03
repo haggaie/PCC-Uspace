@@ -1,0 +1,1 @@
+docker run -it --rm -v `pwd`:/opt --workdir=/opt --network=container:numa0 ubuntu:18.04 /bin/bash
